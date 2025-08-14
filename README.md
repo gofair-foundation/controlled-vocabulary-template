@@ -91,5 +91,5 @@ If you want to quickly test your vocabulary, you can follow these steps:
    ```
 
 
-# Recommended License for the Vocabular
+# Recommended License for the Vocabulary
 We recommend using the Apache 2.0 license for vocabularies because it provides clear, permissive terms that encourage wide adoption and reuse while protecting contributors through explicit patent and attribution clauses.
