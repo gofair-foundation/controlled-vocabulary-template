@@ -1,5 +1,5 @@
 # Publishing Your Own Controlled Vocabulary
-1. Create your vocabulary on Google Sheets.
+1. Create your vocabulary on Google Sheets. Please check out the [M4Mvocab - Wiki](https://github.com/gofair-foundation/M4Mvocab-Training/wiki) page for more information on how to build your vocabulary. The Wiki is accessible to those who have attended GFF training.
 
 2. Create an Ubuntu virtual machine to host your Skosmos server. You can follow one of these tutorials: [Google Cloud](https://cloud.google.com/compute/docs/instances/create-start-instance), [Amazon Web Services](https://aws.amazon.com/getting-started/launch-a-virtual-machine-B-0/), [Microsoft Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu).
 
@@ -89,7 +89,6 @@ If you want to quickly test your vocabulary, you can follow these steps:
    ```
    java -jar skos-play.jar hierarchical -i FILE_NAME.ttl -o FILE_NAME.html -f html -l en
    ```
-
 
 # Recommended License for the Vocabulary
 We recommend using the Apache 2.0 license for vocabularies because it provides clear, permissive terms that encourage wide adoption and reuse while protecting contributors through explicit patent and attribution clauses.
