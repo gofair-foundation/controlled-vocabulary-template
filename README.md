@@ -89,3 +89,7 @@ If you want to quickly test your vocabulary, you can follow these steps:
    ```
    java -jar skos-play.jar hierarchical -i FILE_NAME.ttl -o FILE_NAME.html -f html -l en
    ```
+
+
+# Recommended License for the Vocabular
+We recommend using the Apache 2.0 license for vocabularies because it provides clear, permissive terms that encourage wide adoption and reuse while protecting contributors through explicit patent and attribution clauses.
