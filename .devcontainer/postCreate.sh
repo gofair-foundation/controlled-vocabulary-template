@@ -12,9 +12,10 @@ conda create -y -n sheet2rdf_dev python=3.8 pandas openpyxl requests rdflib shya
 conda activate sheet2rdf_dev
 
 # Download the vocabulary and convert it to ttl
+mkdir -p logs
 curl -L https://github.com/sparna-git/xls2rdf/releases/download/2.1.1/xls2rdf-app-2.1.1-onejar.jar -o xls2rdf.jar
 python src/sheet2xls.py
-java -jar xls2rdf.jar convert -i $FILE_NAME.xlsx -o $FILE_NAME.ttl -l en
+java -jar xls2rdf.jar convert -i "$FILE_NAME.xlsx" -o "$FILE_NAME.ttl" -l en
 mv xls2rdf.log ./logs/
 python src/update.py
 
@@ -31,7 +32,7 @@ fi
 BASEHREF="https://${CODESPACE_NAME//_/-}-9090.app.github.dev/"
 
 # Generate vocabulary block info
-python src/generate_vocab_block.py ./$FILE_NAME.ttl > /tmp/vocab-block.ttl
+python src/generate_vocab_block.py "./$FILE_NAME.ttl" > /tmp/vocab-block.ttl
 
 # Write config for Skosmos
 # Change the baseHref 
@@ -85,7 +86,7 @@ for i in {1..60}; do
 done
 
 # Load TTL into the graph
-curl --retry 6 --retry-delay 2 --retry-connrefused -sSf -X PUT -H "Content-Type: text/turtle;charset=utf-8" --data-binary @$FILE_NAME.ttl "http://localhost:9030/skosmos/data?graph=http://example.org/graph/dev"
+curl --retry 6 --retry-delay 2 --retry-connrefused -sSf -X PUT -H "Content-Type: text/turtle;charset=utf-8" --data-binary @"$FILE_NAME.ttl" "http://localhost:9030/skosmos/data?graph=http://example.org/graph/dev"
 
 # Signal that post-create finished
 touch /workspaces/.postcreate_done
