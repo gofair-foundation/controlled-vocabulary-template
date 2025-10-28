@@ -21,7 +21,7 @@ def getGoogleSheet(spreadsheet_id, spreadsheet_gid, outDir, outFile):
 
 file_name = os.environ['FILE_NAME']
 sheet_id = os.environ["SHEET_ID"]
-sheet_gid = os.environ["sheet_GID"]
+sheet_gid = os.environ["SHEET_GID"]
 
 outDir = './'
 
