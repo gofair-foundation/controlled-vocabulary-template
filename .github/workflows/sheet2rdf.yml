@@ -42,7 +42,7 @@ jobs:
         env:
           FILE_NAME: ${{secrets.FILE_NAME}}
           SHEET_ID: ${{secrets.SHEET_ID}}
-          GID: ${{secrets.GID}}
+          SHEET_GID: ${{secrets.SHEET_GID}}
         run: |
           conda activate sheet2rdf          
           python ./src/sheet2xls.py
