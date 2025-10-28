@@ -10,6 +10,7 @@
 5. Go to **Settings -> Secrets and variables -> Actions -> New repository secret** and add the following secrets:
 - **`FILE_NAME`** — base name for output files (e.g., `vocabulary`)  
 - **`SHEET_ID`** — ID of your Google Sheet. You can find it from its URL.
+- **`GID`** — Sheet GID (tab identifier). You can find it from the URL when you are in the desired tab of your Google Sheet.
 - **`GRAPH`** — URI of the named graph to publish to  
 - **`DB_USER`** — Fuseki database username  
 - **`DB_PASS`** — Fuseki database password  
@@ -54,6 +55,7 @@ If you have updated the Google Sheet and want to preview the vocabulary in Skosm
 1. Go to **Settings -> Secrets and variables -> Codespaces -> New repository secret** and add the following secrets:
 - **`FILE_NAME`** — base name for output files (e.g., `vocabulary`)  
 - **`SHEET_ID`** — ID of your Google Sheet. You can find it from its URL.
+- **`GID`** — Sheet GID (tab identifier). You can find it from the URL when you are in the desired tab of your Google Sheet.
 
 2. In your GitHub repo, go to **Code -> Codespaces -> Create codespace on main**. This starts a VS Code environment and brings up Skosmos in Docker for preview.
 
