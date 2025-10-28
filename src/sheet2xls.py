@@ -5,7 +5,10 @@ import pandas as pd
 
 def getGoogleSheet(spreadsheet_id, spreadsheet_gid, outDir, outFile):
   
-  url = f'https://docs.google.com/spreadsheets/d/{spreadsheet_id}/export?format=csv&gid={spreadsheet_gid}'
+  if spreadsheet_gid is None:
+    url = f'https://docs.google.com/spreadsheets/d/{spreadsheet_id}/export?format=csv'
+  else:
+    url = f'https://docs.google.com/spreadsheets/d/{spreadsheet_id}/export?format=csv&gid={spreadsheet_gid}'
   response = requests.get(url)
   if response.status_code == 200:
     filepath = os.path.join(outDir, outFile)
@@ -21,7 +24,7 @@ def getGoogleSheet(spreadsheet_id, spreadsheet_gid, outDir, outFile):
 
 file_name = os.environ['FILE_NAME']
 sheet_id = os.environ["SHEET_ID"]
-sheet_gid = os.environ["SHEET_GID"]
+sheet_gid = os.environ["SHEET_GID"] or None
 
 outDir = './'
 
