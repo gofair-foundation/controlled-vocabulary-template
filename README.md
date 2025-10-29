@@ -8,12 +8,13 @@
 4. Create your Github repository using this template.
 
 5. Go to **Settings -> Secrets and variables -> Actions -> New repository secret** and add the following secrets:
-- **`FILE_NAME`** — base name for output files (e.g., `vocabulary`)  
+- **`FILE_NAME`** — base name for output files (e.g., `my_vocabulary`)  
 - **`SHEET_ID`** — ID of your Google Sheet. You can find it from its URL.
-- **`GRAPH`** — URI of the named graph to publish to  
-- **`DB_USER`** — Fuseki database username  
-- **`DB_PASS`** — Fuseki database password  
-- **`SPARQL_ENDPOINT`** — URL of your Graph Store SPARQL endpoint  
+- **`SHEET_GID`** — Sheet GID (tab identifier). You can find it from the URL when you are in the desired tab of your Google Sheet. If you have only one tab, you do not need to set this variable.
+- **`GRAPH`** — URI of the named graph to publish to. For example: `http://example.org/graph/my_vocabulary`
+- **`DB_USER`** — Fuseki database username. You can find both username and password of database in the VM in `cat /etc/fuseki/shiro.ini` file.
+- **`DB_PASS`** — Fuseki database password.
+- **`SPARQL_ENDPOINT`** — URL of your Graph Store SPARQL endpoint, such as `http://YOUR_VM_IP:3030/DATABASE_NAME/data`.
 
 
 6. Preview your vocabulary before publishing. You can follow the steps in the section [Previewing Vocabulary in GitHub Codespaces](#previewing-vocabulary-in-github-codespaces).
@@ -24,7 +25,7 @@
 # Deploying Skosmos
 The official [tutorial](https://github.com/NatLibFi/Skosmos/wiki/InstallTutorial) assumes a local VM setup. When using a cloud VM, you need to:
 
-1. Replace `localhost` in tutorial instructions with your VM’s public IP.
+1. Replace `localhost` in tutorial instructions with your VM’s public IP when you are accessing it from outside of the VM.
 
 2. Open inbound TCP port **3030** in your VM’s network settings. You can find the tutorials for [Google Cloud](https://cloud.google.com/firewall/docs/using-firewalls), [Amazon Web Services](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/changing-security-group.html#add-remove-security-group-rules), [Microsoft Azure](https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group?tabs=network-security-group-portal).
 
@@ -32,18 +33,8 @@ The official [tutorial](https://github.com/NatLibFi/Skosmos/wiki/InstallTutorial
 
    ```
    sudo apt update
-   sudo apt install apache2 libapache2-mod-php8.1 php8.1 php8.1-xml php8.1-intl php8.1-mbstring php8.1-curl
+   sudo apt install -y apache2 php libapache2-mod-php php-xml php-intl php-mbstring php-curl
    ```
-
-4. If the `php composer.phar install --no-dev` command fails in the section [Install Skosmos](https://github.com/NatLibFi/Skosmos/wiki/InstallTutorial#install-skosmos), try running the following commands instead:
-
-   ```
-   sudo apt update
-   sudo apt install -y php8.1-zip unzip composer
-   composer clear-cache
-   php composer.phar install --no-dev
-   ```
-
 
 # Previewing Vocabulary in Skosmos Using GitHub Codespaces
 
@@ -54,6 +45,7 @@ If you have updated the Google Sheet and want to preview the vocabulary in Skosm
 1. Go to **Settings -> Secrets and variables -> Codespaces -> New repository secret** and add the following secrets:
 - **`FILE_NAME`** — base name for output files (e.g., `vocabulary`)  
 - **`SHEET_ID`** — ID of your Google Sheet. You can find it from its URL.
+- **`SHEET_GID`** — Sheet GID (tab identifier). You can find it from the URL when you are in the desired tab of your Google Sheet. If you have only one tab, you do not need to set this variable.
 
 2. In your GitHub repo, go to **Code -> Codespaces -> Create codespace on main**. This starts a VS Code environment and brings up Skosmos in Docker for preview.
 

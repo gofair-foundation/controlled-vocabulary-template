@@ -21,12 +21,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+    permissions:
+      contents: write
+
     steps:
       - uses: actions/checkout@v4
       - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-update-conda: true
           python-version: "3.8"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Prepare
         shell: bash -l {0}
         run: |
@@ -36,12 +41,14 @@ jobs:
           conda create -n sheet2rdf python=3.8 pandas openpyxl requests
           conda activate sheet2rdf
           curl -L https://github.com/sparna-git/xls2rdf/releases/download/2.1.1/xls2rdf-app-2.1.1-onejar.jar -o xls2rdf.jar
+          mkdir -p logs
 
       - name: Fetch
         shell: bash -l {0}
         env:
           FILE_NAME: ${{secrets.FILE_NAME}}
           SHEET_ID: ${{secrets.SHEET_ID}}
+          SHEET_GID: ${{secrets.SHEET_GID}}
         run: |
           conda activate sheet2rdf          
           python ./src/sheet2xls.py
